@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.perspective{
+  perspective: 1000px;
+}
+
+.preserve-3d{
+  transform-style: preserve-3d;
+
+}
+
+.rotate-y-180{
+  transform: rotateY(180deg);
+
+  
+}
+
+.backface-hidden{
+    backface-visibility: hidden;
+  }
+
+.glass{
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.matched-glow{
+  box-shadow: 0 0 15px 4px rgba(16, 158, 99, 0.6);
+}
+
+.card-anim{
+  transition:transform 0.25s ease;
+}
+
+.card-anim:hover{
+  transform:scale(1.04);
+}
