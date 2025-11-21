@@ -1,67 +1,57 @@
-import React from 'react';
-import { Sparkles } from 'lucide-react';
+import React from "react";
+import { Sparkles } from "lucide-react";
 
 export default function Card({ isFlipped, isMatched, src, onClick }) {
-  // Detect emoji (or any non-URL string) - Logic preserved
-  const isEmoji = !src.startsWith("http"); 
+  const isEmoji = !src.startsWith("http");
 
   return (
     <div
-      className={`
-        relative w-full aspect-[3/4] cursor-pointer group perspective-1000
-        ${isMatched ? 'pointer-events-none' : ''}
-      `}
+      className="
+        relative w-24 h-24 cursor-pointer 
+        perspective
+      "
       onClick={onClick}
     >
       <div
         className={`
-          w-full h-full transition-all duration-500 ease-out 
-          [transform-style:preserve-3d] shadow-xl rounded-2xl
-          ${isFlipped || isMatched ? '[transform:rotateY(180deg)]' : 'hover:-translate-y-2 hover:shadow-2xl'}
-          ${isMatched ? 'shadow-green-400/50 ring-4 ring-green-400 animate-pulse' : ''}
+          relative w-full h-full transition-transform duration-500 
+          preserve-3d rounded-xl shadow-lg
+          ${isFlipped || isMatched ? "rotate-y-180" : ""}
+          ${isMatched ? "ring-4 ring-green-400 shadow-green-400/50" : ""}
         `}
       >
-        {/* --- FRONT (Face Down) --- */}
-        <div 
+
+        {/* ---- FRONT ---- */}
+        <div
           className="
             absolute inset-0 w-full h-full 
+            backface-hidden rounded-xl 
             bg-gradient-to-br from-indigo-600 to-violet-900 
-            rounded-2xl border-2 border-indigo-400/30
-            flex items-center justify-center 
-            [backface-visibility:hidden]
+            border border-indigo-300/40 flex items-center justify-center
           "
         >
-          {/* Decorative pattern */}
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
-          <Sparkles className="w-8 h-8 text-indigo-200 animate-pulse" />
+          <Sparkles className="w-6 h-6 text-indigo-200" />
         </div>
 
-        {/* --- BACK (Face Up - Content) --- */}
-        <div 
+        {/* ---- BACK ---- */}
+        <div
           className="
             absolute inset-0 w-full h-full 
-            bg-white rounded-2xl overflow-hidden
-            border-4 border-indigo-100
-            flex items-center justify-center 
-            [backface-visibility:hidden] [transform:rotateY(180deg)]
+            rotate-y-180 backface-hidden 
+            rounded-xl overflow-hidden 
+            bg-white border border-indigo-200
+            flex items-center justify-center
           "
         >
           {isEmoji ? (
-            <span className="text-5xl sm:text-6xl filter drop-shadow-sm select-none transform transition-transform hover:scale-110">
-              {src}
-            </span>
+            <span className="text-4xl select-none">{src}</span>
           ) : (
-            <div className="relative w-full h-full p-1">
-               <img
-                src={src}
-                alt="card content"
-                className="object-cover w-full h-full rounded-xl shadow-inner"
-              />
-            </div>
+            <img
+              src={src}
+              alt="card"
+              className="object-cover w-full h-full"
+            />
           )}
-          
-          {/* Shine effect overlay for the glass look */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
         </div>
       </div>
     </div>

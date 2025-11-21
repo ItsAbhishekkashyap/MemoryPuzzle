@@ -54,7 +54,7 @@ export default function NameModal({ onConfirm }){
                 placeholder="Enter your name..."
                 className={`
                   w-full px-4 py-3 rounded-lg border 
-                  focus:ring-2 focus:outline-none transition-all
+                  focus:ring-2 focus:outline-none text-black transition-all
                   ${error 
                     ? 'border-red-300 focus:ring-red-200 focus:border-red-400 bg-red-50' 
                     : 'border-gray-300 focus:ring-indigo-200 focus:border-indigo-500'
