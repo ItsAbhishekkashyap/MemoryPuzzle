@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Memory Game",
-  description: "It is a memory puzzle game",
+  description: "It's a puzzle game",
+  
 };
 
 export default function RootLayout({ children }) {

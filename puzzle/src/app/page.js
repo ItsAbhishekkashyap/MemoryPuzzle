@@ -5,6 +5,7 @@ import Board from "@/component/Board";
 import ImageUploader from "@/component/ImageUploader";
 import NameModal from "@/component/NameModal";
 
+
 const DEFAULT_ASSETS = ["🔥","🔥","⚡","⚡","🎲","🎲","🌙","🌙"];
 
 export default function Home() {
