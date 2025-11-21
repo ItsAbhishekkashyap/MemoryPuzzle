@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Board from "@/components/Board";
-import ImageUploader from "@/components/ImageUploader";
-import NameModal from "@/components/NameModal";
+import Board from "@/component/Board";
+import ImageUploader from "@/component/ImageUploader";
+import NameModal from "@/component/NameModal";
 
 const DEFAULT_ASSETS = ["🔥","🔥","⚡","⚡","🎲","🎲","🌙","🌙"];
 
