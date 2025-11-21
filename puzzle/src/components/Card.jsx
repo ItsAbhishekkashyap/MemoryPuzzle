@@ -1,50 +1,31 @@
-import React, { useState } from "react";
-
 export default function Card({ isFlipped, isMatched, src, onClick }) {
-  // Determine content type
-  const isEmoji = src.startsWith("http") || src.startsWith("/");
+  const isEmoji = !src.startsWith("http"); // detect emoji (or any non-URL string)
 
   return (
     <div
-      className={`relative w-32 h-44 cursor-pointer group perspective-1000 ${
-        isMatched ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
+      className="w-24 h-24 cursor-pointer perspective card-anim"
       onClick={onClick}
     >
       <div
-        className={`
-          w-full h-full transition-all duration-500 
-          [transform-style:preserve-3d] 
+        className={`relative w-full h-full transition-transform duration-500 preserve-3d
           ${isFlipped || isMatched ? "rotate-y-180" : ""}
+          ${isMatched ? "matched-glow" : ""}
         `}
       >
-        {/* Card Back (The pattern visible when face down) */}
-        <div className="absolute w-full h-full bg-indigo-600 rounded-xl shadow-md flex items-center justify-center [backface-visibility:hidden] border-2 border-indigo-400">
-          <span className="text-4xl text-white opacity-50">?</span>
+        {/* FRONT */}
+        <div className="absolute w-full h-full backface-hidden glass rounded-xl flex items-center justify-center text-3xl border border-white/10">
+          ?
         </div>
 
-        {/* Card Front (The content visible when flipped) */}
-        <div
-          className="
-            absolute w-full h-full bg-white rounded-xl shadow-md 
-            flex items-center justify-center overflow-hidden 
-            [backface-visibility:hidden] [transform:rotateY(180deg)]
-            border-2 border-gray-200
-          "
-        >
+        {/* BACK */}
+        <div className="absolute w-full h-full rotate-y-180 backface-hidden rounded-xl flex items-center justify-center overflow-hidden">
           {isEmoji ? (
-            <span
-              className="text-5xl select-none"
-              role="img"
-              aria-label="card content"
-            >
-              {src}
-            </span>
+            <span className="text-4xl">{src}</span> // render emoji as text
           ) : (
             <img
               src={src}
-              alt="Card Content"
-              className="w-full h-full object-cover"
+              alt="card"
+              className="object-cover w-full h-full"
             />
           )}
         </div>
